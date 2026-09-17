@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>IT Portfolio — Executive Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --panel: #ffffff;
+    --border: #e2e6ea;
+    --text: #1c2530;
+    --muted: #6b7684;
+    --accent: #2f6fb0;
+    --flag-bg: #fff4e5;
+    --flag-text: #9a5b00;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  header {
+    padding: 28px 32px 20px;
+    background: linear-gradient(135deg,#1c2530,#2d3b4d);
+    color: #fff;
+  }
+  header h1 { margin: 0 0 4px; font-size: 22px; font-weight: 700; letter-spacing: 0.2px; }
+  header .sub { color: #b8c2cc; font-size: 13px; }
+  header .meta { margin-top: 10px; font-size: 12px; color: #93a0ac; font-family: 'IBM Plex Mono', monospace; }
+  .wrap { padding: 22px 32px 60px; max-width: 1440px; margin: 0 auto; }
+
+  .kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 22px; }
+  .kpi { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+  .kpi .val { font-size: 28px; font-weight: 700; }
+  .kpi .label { font-size: 12px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .kpi .note { font-size: 11px; color: var(--muted); margin-top: 6px; }
+  .kpi.notracked .val { color: #b3b9bf; }
+  .kpi.notracked { background: repeating-linear-gradient(135deg, #fafbfc, #fafbfc 10px, #f1f3f5 10px, #f1f3f5 20px); }
+
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 22px; overflow: hidden; }
+  .panel-header { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .panel-header h2 { margin: 0; font-size: 15px; font-weight: 600; }
+  .panel-header .sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .panel-body { padding: 16px 18px; }
+
+  .main-grid { display: grid; grid-template-columns: 2.1fr 1fr; gap: 18px; align-items: start; }
+
+  .table-group { margin-bottom: 16px; }
+  .table-group:last-child { margin-bottom: 0; }
+  .table-group-header { font-size: 12px; font-weight: 700; letter-spacing: 0.6px; color: var(--muted); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .table-group-header .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .table-group-header .count { font-weight: 400; color: #9aa3ad; }
+  table.ptable { width: 100%; border-collapse: collapse; }
+  table.ptable th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  table.ptable td { padding: 8px 8px; border-bottom: 1px solid #f0f2f4; font-size: 13px; vertical-align: middle; }
+  table.ptable tr:hover td { background: #fafbfc; }
+  .proj-cell a { color: var(--text); font-weight: 500; text-decoration: none; }
+  .proj-cell a:hover { text-decoration: underline; color: var(--accent); }
+
+  .flag { background: var(--flag-bg); color: var(--flag-text); font-size: 11px; padding: 2px 6px; border-radius: 4px; border: 1px solid #f0dcb8; white-space: nowrap; }
+  .pill { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; white-space: nowrap; }
+  .badge { font-size: 10px; font-weight: 700; color: #fff; padding: 2px 6px; border-radius: 4px; letter-spacing: 0.3px; margin-right: 4px; }
+
+  .sidebar-subhead { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; margin: 14px 0 8px; }
+  .golive-item { padding: 10px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; }
+  .golive-item.soon { border-color: #d99a2b66; background: #fffaf1; }
+  .golive-item.past { opacity: 0.7; }
+  .golive-date { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); }
+  .golive-name a { font-weight: 500; color: var(--text); text-decoration: none; font-size: 13px; }
+  .golive-name a:hover { text-decoration: underline; }
+  .golive-meta { margin-top: 6px; display: flex; gap: 6px; align-items: center; }
+  .empty-note { color: var(--muted); font-size: 12px; padding: 8px 0; }
+
+  .capacity-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cap-meter { padding: 14px; border: 1px dashed #cfd5db; border-radius: 8px; background: repeating-linear-gradient(135deg, #fafbfc, #fafbfc 8px, #f1f3f5 8px, #f1f3f5 16px); }
+  .cap-meter .cap-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; }
+  .cap-meter .cap-bar-track { height: 10px; background: #e6e9ec; border-radius: 5px; margin: 10px 0 8px; overflow: hidden; }
+  .cap-meter .cap-bar-fill { height: 100%; width: 0%; }
+  .cap-meter .cap-flag { font-size: 11.5px; color: var(--flag-text); background: var(--flag-bg); border: 1px solid #f0dcb8; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+  .capacity-note { margin-top: 14px; font-size: 12px; color: var(--muted); background: #f7f8fa; border-radius: 6px; padding: 10px 12px; border: 1px solid var(--border); }
+
+  .kanban { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .kcol { background: #fafbfc; border: 1px solid var(--border); border-radius: 8px; padding: 10px; min-height: 40px; }
+  .kcol-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 12px; }
+  .kcol-header .count { color: var(--muted); font-weight: 600; }
+  .kcol-body { max-height: 480px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+  .kcard { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; }
+  .kcard-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .kscore { font-size: 10.5px; }
+  .kcard-name { display: block; font-size: 12.5px; font-weight: 500; color: var(--text); text-decoration: none; margin-bottom: 6px; }
+  .kcard-name:hover { text-decoration: underline; color: var(--accent); }
+
+  .timeline { display: grid; grid-template-columns: repeat(3, 1fr) 1.3fr; gap: 14px; }
+  .qcol, .qcol-unsched { background: #fafbfc; border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
+  .qcol-unsched { background: repeating-linear-gradient(135deg, #fafbfc, #fafbfc 8px, #f1f3f5 8px, #f1f3f5 16px); border-style: dashed; }
+  .qcol-header, .qcol-unsched-header { font-size: 12px; font-weight: 700; margin-bottom: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; }
+  .qcol-unsched-header { color: var(--flag-text); }
+  .qcol-body, .qcol-unsched-body { display: flex; flex-direction: column; gap: 8px; max-height: 520px; overflow-y: auto; }
+  .tbar { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 7px 9px; }
+  .tbar-name { display: block; font-size: 12.5px; font-weight: 500; color: var(--text); text-decoration: none; }
+  .tbar-name:hover { text-decoration: underline; color: var(--accent); }
+  .tbar-meta { display: block; font-size: 10.5px; color: var(--muted); margin-top: 4px; }
+
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 11.5px; color: var(--muted); }
+  .legend span.swatch { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+
+  footer { text-align: center; font-size: 11px; color: #9aa3ad; padding: 20px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>IT Portfolio — Executive Dashboard</h1>
+  <div class="sub">Hopebridge Portfolio/Program &middot; Sourced live from ClickUp</div>
+  <div class="meta">Generated September 16, 2026 &middot; 31 tracked items across 3 ClickUp lists (Strategic Initiatives, Business/Ops Portfolio, Technology/IT Portfolio) &middot; Fields with no ClickUp data source are labeled "no data" / "not tracked" rather than estimated.</div>
+</header>
+
+<div class="wrap">
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="val">30</div>
+      <div class="label">Active Projects</div>
+      <div class="note">of 31 total tracked items (1 deployed)</div>
+    </div>
+    <div class="kpi">
+      <div class="val" style="color:#d94f4f">1</div>
+      <div class="label">At Risk (RAG Red / Blocked)</div>
+      <div class="note">RAG Status is only populated on 4 of 31 items — the rest have no RAG data source</div>
+    </div>
+    <div class="kpi">
+      <div class="val">3</div>
+      <div class="label">Go-Lives — Next 60 Days</div>
+      <div class="note">Only 5 of 31 items have any go-live/delivery date on record</div>
+    </div>
+    <div class="kpi notracked">
+      <div class="val">—</div>
+      <div class="label">Capacity vs Run/Grow/Transform Target</div>
+      <div class="note">No Run/Grow/Transform field exists in ClickUp for this space — not tracked</div>
+    </div>
+  </div>
+
+  <!-- MAIN GRID: TABLE + GO-LIVES SIDEBAR -->
+  <div class="main-grid">
+    <div class="panel">
+      <div class="panel-header">
+        <div>
+          <h2>Portfolio Table View</h2>
+          <div class="sub">Grouped by portfolio &middot; Sponsor / Score are sparsely populated in ClickUp and shown as "no data" where absent</div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <table class="ptable">
+          <thead><tr><th style="width:34%">Project</th><th>Sponsor</th><th>Status</th><th>RAG</th><th>Score</th><th>Go-Live</th></tr></thead>
+        </table>
+        
+<div class="table-group">
+  <div class="table-group-header"><span class="dot" style="background:#6a4fb0"></span>STRATEGIC <span class="count">(8)</span></div>
+  <table class="ptable"><tbody>
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc100wy" target="_blank">IT Governance, ITSM &amp; Technical Debt</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc100up" target="_blank">Cybersecurity Audit &amp; Remediation</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc100p2" target="_blank">AI-Assisted Plan of Care &amp; Session Notes</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc100kk" target="_blank">Delegated Credentialing (Verifiable)</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc100j0" target="_blank">RCM Platform Deployment (Candid Health)</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc100gq" target="_blank">Scheduling Platform Deployment (TheraDriver)</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc100dj" target="_blank">Patient Intake &amp; Referral Automation</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc100ae" target="_blank">Automated Fax Ingestion &amp; Intake Digitization</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr></tbody></table>
+</div>
+<div class="table-group">
+  <div class="table-group-header"><span class="dot" style="background:#b0702f"></span>OPERATIONAL <span class="count">(3)</span></div>
+  <table class="ptable"><tbody>
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc1wqr9" target="_blank">TheraDriver - External Scheduling Platform</a></td>
+          <td>Heather Wilworth</td>
+          <td><span class="pill" style="background:#1090e022;color:#1090e0;border:1px solid #1090e055">In Progress</span></td>
+          <td><span class="pill" style="background:#8b3fbf22;color:#8b3fbf;border:1px solid #8b3fbf55">Blocked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc1urka" target="_blank">Verifiable: Delegated Credentialing</a></td>
+          <td>Kelly Wescott</td>
+          <td><span class="pill" style="background:#1090e022;color:#1090e0;border:1px solid #1090e055">In Progress</span></td>
+          <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
+          <td><span class="flag">no data</span></td>
+          <td>2027-01-27</td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc1u3wt" target="_blank">Candid Health: CRM/Claims Platform</a></td>
+          <td>Kelly Wescott</td>
+          <td><span class="pill" style="background:#3db88b22;color:#3db88b;border:1px solid #3db88b55">Deployed</span></td>
+          <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
+          <td>4.0</td>
+          <td>2026-09-15</td>
+        </tr></tbody></table>
+</div>
+<div class="table-group">
+  <div class="table-group-header"><span class="dot" style="background:#2f6fb0"></span>TECHNICAL <span class="count">(20)</span></div>
+  <table class="ptable"><tbody>
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z540" target="_blank">Candid Health: RCM Platform</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53z" target="_blank">Spike: Define Datadog Monitoring and Alerting for Pearson Production Integration</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53y" target="_blank">SPIKE: Form addressing and what comes back</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53v" target="_blank">Shut off Self-Scheduling for ABA evaluations</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53x" target="_blank">Brellium/Rethink: POC Auditing</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53q" target="_blank">Send a BASC assessment from the patient record</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53t" target="_blank">Bug: Vineland returned an unsuccessful response...</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53p" target="_blank">Salesforce -&gt; Datadog log capture: review Admin Setup Guide &amp; complete Salesforce configuration</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53r" target="_blank">LaunchPad Lab: Capacity Planning Tool</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53u" target="_blank">Production testing for SP2</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53m" target="_blank">Confirm the BASC version and form before sending</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53k" target="_blank">Document RPAs</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td>2026-09-30</td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53j" target="_blank">Granite: ISP Replacement</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53g" target="_blank">Confirm the Datadog BAA is on file and covers APM and Log Management</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53f" target="_blank">SPIKE: Salesforce &lt;-&gt; Q-global Patient Identity &amp; Record Linking</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53e" target="_blank">Production testing for Vineland 3</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53b" target="_blank">LaunchPad Labs: RPA Conversions &amp; Automation</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53c" target="_blank">Verifiable: Delegated Credentialing</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
+          <td><span class="flag">no data</span></td>
+          <td>2026-10-30</td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z53a" target="_blank">SPIKE:Prove a single BASC-3 connection to API</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td>2026-09-30</td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc0z538" target="_blank">Review SF packages for prod deployment</a></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span></td>
+          <td><span class="flag">not tracked</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr></tbody></table>
+</div>
+
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <div>
+          <h2>Go-Lives</h2>
+          <div class="sub">Upcoming, by date on record</div>
+        </div>
+      </div>
+      <div class="panel-body">
+        
+    <div class="golive-item soon">
+      <div class="golive-date">Sep 30, 2026</div>
+      <div class="golive-name"><a href="https://app.clickup.com/t/86bc0z53k" target="_blank">Document RPAs</a></div>
+      <div class="golive-meta"><span class="badge" style="background:#2f6fb0">TECH</span> <span class="flag">not tracked</span></div>
+    </div>
+
+    <div class="golive-item soon">
+      <div class="golive-date">Sep 30, 2026</div>
+      <div class="golive-name"><a href="https://app.clickup.com/t/86bc0z53a" target="_blank">SPIKE:Prove a single BASC-3 connection to API</a></div>
+      <div class="golive-meta"><span class="badge" style="background:#2f6fb0">TECH</span> <span class="flag">not tracked</span></div>
+    </div>
+
+    <div class="golive-item soon">
+      <div class="golive-date">Oct 30, 2026</div>
+      <div class="golive-name"><a href="https://app.clickup.com/t/86bc0z53c" target="_blank">Verifiable: Delegated Credentialing</a></div>
+      <div class="golive-meta"><span class="badge" style="background:#2f6fb0">TECH</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
+    </div>
+
+    <div class="golive-item ">
+      <div class="golive-date">Jan 27, 2027</div>
+      <div class="golive-name"><a href="https://app.clickup.com/t/86bc1urka" target="_blank">Verifiable: Delegated Credentialing</a></div>
+      <div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
+    </div>
+        <div class="sidebar-subhead">Recently passed</div><div class="golive-item past"><div class="golive-date">Sep 15, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc1u3wt" target="_blank">Candid Health: CRM/Claims Platform</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOARD VIEW -->
+  <div class="panel">
+    <div class="panel-header">
+      <div>
+        <h2>Board View by Status</h2>
+        <div class="sub">Score shown where tracked (populated on 1 of 31 items)</div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="kanban">
+        
+    <div class="kcol">
+      <div class="kcol-header"><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span> <span class="count">10</span></div>
+      <div class="kcol-body">
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#6a4fb0">STRAT</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc100wy" target="_blank">IT Governance, ITSM &amp; Technical Debt</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#6a4fb0">STRAT</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc100up" target="_blank">Cybersecurity Audit &amp; Remediation</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#6a4fb0">STRAT</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc100p2" target="_blank">AI-Assisted Plan of Care &amp; Session Notes</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#6a4fb0">STRAT</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc100kk" target="_blank">Delegated Credentialing (Verifiable)</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#6a4fb0">STRAT</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc100j0" target="_blank">RCM Platform Deployment (Candid Health)</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#6a4fb0">STRAT</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc100gq" target="_blank">Scheduling Platform Deployment (TheraDriver)</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#6a4fb0">STRAT</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc100dj" target="_blank">Patient Intake &amp; Referral Automation</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#6a4fb0">STRAT</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc100ae" target="_blank">Automated Fax Ingestion &amp; Intake Digitization</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53k" target="_blank">Document RPAs</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53a" target="_blank">SPIKE:Prove a single BASC-3 connection to API</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div></div>
+    </div>
+
+    <div class="kcol">
+      <div class="kcol-header"><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Backlog</span> <span class="count">18</span></div>
+      <div class="kcol-body">
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z540" target="_blank">Candid Health: RCM Platform</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53z" target="_blank">Spike: Define Datadog Monitoring and Alerting for Pearson Production Integration</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53y" target="_blank">SPIKE: Form addressing and what comes back</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53v" target="_blank">Shut off Self-Scheduling for ABA evaluations</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53x" target="_blank">Brellium/Rethink: POC Auditing</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53q" target="_blank">Send a BASC assessment from the patient record</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53t" target="_blank">Bug: Vineland returned an unsuccessful response...</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53p" target="_blank">Salesforce -&gt; Datadog log capture: review Admin Setup Guide &amp; complete Salesforce configuration</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53r" target="_blank">LaunchPad Lab: Capacity Planning Tool</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53u" target="_blank">Production testing for SP2</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53m" target="_blank">Confirm the BASC version and form before sending</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53j" target="_blank">Granite: ISP Replacement</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53g" target="_blank">Confirm the Datadog BAA is on file and covers APM and Log Management</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53f" target="_blank">SPIKE: Salesforce &lt;-&gt; Q-global Patient Identity &amp; Record Linking</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53e" target="_blank">Production testing for Vineland 3</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53b" target="_blank">LaunchPad Labs: RPA Conversions &amp; Automation</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z53c" target="_blank">Verifiable: Delegated Credentialing</a>
+        <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc0z538" target="_blank">Review SF packages for prod deployment</a>
+        <div class="kcard-bottom"><span class="flag">not tracked</span></div>
+      </div></div>
+    </div>
+
+    <div class="kcol">
+      <div class="kcol-header"><span class="pill" style="background:#1090e022;color:#1090e0;border:1px solid #1090e055">In Progress</span> <span class="count">2</span></div>
+      <div class="kcol-body">
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc1wqr9" target="_blank">TheraDriver - External Scheduling Platform</a>
+        <div class="kcard-bottom"><span class="pill" style="background:#8b3fbf22;color:#8b3fbf;border:1px solid #8b3fbf55">Blocked</span></div>
+      </div>
+
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore"><span class="flag">no data</span></span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc1urka" target="_blank">Verifiable: Delegated Credentialing</a>
+        <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
+      </div></div>
+    </div>
+
+    <div class="kcol">
+      <div class="kcol-header"><span class="pill" style="background:#3db88b22;color:#3db88b;border:1px solid #3db88b55">Deployed</span> <span class="count">1</span></div>
+      <div class="kcol-body">
+      <div class="kcard">
+        <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">4.0</span></div>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc1u3wt" target="_blank">Candid Health: CRM/Claims Platform</a>
+        <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
+      </div></div>
+    </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROADMAP TIMELINE -->
+  <div class="panel">
+    <div class="panel-header">
+      <div>
+        <h2>Portfolio Roadmap Timeline View</h2>
+        <div class="sub">Grouped by go-live quarter (calendar quarter of recorded date) &middot; bar color = RAG status</div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="legend" style="margin-bottom:12px;">
+        <span><span class="swatch" style="background:#2f9e6f"></span>Green</span>
+        <span><span class="swatch" style="background:#d99a2b"></span>Amber</span>
+        <span><span class="swatch" style="background:#d94f4f"></span>Red</span>
+        <span><span class="swatch" style="background:#8b3fbf"></span>Blocked</span>
+        <span><span class="swatch" style="background:#c7ccd1"></span>Not tracked</span>
+      </div>
+      <div class="timeline">
+        
+    <div class="qcol">
+      <div class="qcol-header">Q3 2026 <span class="count">3</span></div>
+      <div class="qcol-body">
+    <div class="tbar" style="border-left:4px solid #2f9e6f">
+      <a href="https://app.clickup.com/t/86bc1u3wt" target="_blank" class="tbar-name">Candid Health: CRM/Claims Platform</a>
+      <span class="tbar-meta"><span class="badge" style="background:#b0702f">OPS</span> Sep 15 &middot; RAG: Green</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53k" target="_blank" class="tbar-name">Document RPAs</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span> Sep 30 &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53a" target="_blank" class="tbar-name">SPIKE:Prove a single BASC-3 connection to API</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span> Sep 30 &middot; RAG: not tracked</span>
+    </div></div>
+    </div>
+
+    <div class="qcol">
+      <div class="qcol-header">Q4 2026 <span class="count">1</span></div>
+      <div class="qcol-body">
+    <div class="tbar" style="border-left:4px solid #2f9e6f">
+      <a href="https://app.clickup.com/t/86bc0z53c" target="_blank" class="tbar-name">Verifiable: Delegated Credentialing</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span> Oct 30 &middot; RAG: Green</span>
+    </div></div>
+    </div>
+
+    <div class="qcol">
+      <div class="qcol-header">Q1 2027 <span class="count">1</span></div>
+      <div class="qcol-body">
+    <div class="tbar" style="border-left:4px solid #2f9e6f">
+      <a href="https://app.clickup.com/t/86bc1urka" target="_blank" class="tbar-name">Verifiable: Delegated Credentialing</a>
+      <span class="tbar-meta"><span class="badge" style="background:#b0702f">OPS</span> Jan 27 &middot; RAG: Green</span>
+    </div></div>
+    </div>
+        <div class="qcol-unsched">
+          <div class="qcol-unsched-header">Unscheduled (Backlog) &middot; 26</div>
+          <div class="qcol-unsched-body">
+            
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc100wy" target="_blank" class="tbar-name">IT Governance, ITSM &amp; Technical Debt</a>
+      <span class="tbar-meta"><span class="badge" style="background:#6a4fb0">STRAT</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc100up" target="_blank" class="tbar-name">Cybersecurity Audit &amp; Remediation</a>
+      <span class="tbar-meta"><span class="badge" style="background:#6a4fb0">STRAT</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc100p2" target="_blank" class="tbar-name">AI-Assisted Plan of Care &amp; Session Notes</a>
+      <span class="tbar-meta"><span class="badge" style="background:#6a4fb0">STRAT</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc100kk" target="_blank" class="tbar-name">Delegated Credentialing (Verifiable)</a>
+      <span class="tbar-meta"><span class="badge" style="background:#6a4fb0">STRAT</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc100j0" target="_blank" class="tbar-name">RCM Platform Deployment (Candid Health)</a>
+      <span class="tbar-meta"><span class="badge" style="background:#6a4fb0">STRAT</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc100gq" target="_blank" class="tbar-name">Scheduling Platform Deployment (TheraDriver)</a>
+      <span class="tbar-meta"><span class="badge" style="background:#6a4fb0">STRAT</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc100dj" target="_blank" class="tbar-name">Patient Intake &amp; Referral Automation</a>
+      <span class="tbar-meta"><span class="badge" style="background:#6a4fb0">STRAT</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc100ae" target="_blank" class="tbar-name">Automated Fax Ingestion &amp; Intake Digitization</a>
+      <span class="tbar-meta"><span class="badge" style="background:#6a4fb0">STRAT</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #8b3fbf">
+      <a href="https://app.clickup.com/t/86bc1wqr9" target="_blank" class="tbar-name">TheraDriver - External Scheduling Platform</a>
+      <span class="tbar-meta"><span class="badge" style="background:#b0702f">OPS</span>  &middot; RAG: Blocked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z540" target="_blank" class="tbar-name">Candid Health: RCM Platform</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53z" target="_blank" class="tbar-name">Spike: Define Datadog Monitoring and Alerting for Pearson Production Integration</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53y" target="_blank" class="tbar-name">SPIKE: Form addressing and what comes back</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53v" target="_blank" class="tbar-name">Shut off Self-Scheduling for ABA evaluations</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53x" target="_blank" class="tbar-name">Brellium/Rethink: POC Auditing</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53q" target="_blank" class="tbar-name">Send a BASC assessment from the patient record</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53t" target="_blank" class="tbar-name">Bug: Vineland returned an unsuccessful response...</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53p" target="_blank" class="tbar-name">Salesforce -&gt; Datadog log capture: review Admin Setup Guide &amp; complete Salesforce configuration</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53r" target="_blank" class="tbar-name">LaunchPad Lab: Capacity Planning Tool</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53u" target="_blank" class="tbar-name">Production testing for SP2</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53m" target="_blank" class="tbar-name">Confirm the BASC version and form before sending</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53j" target="_blank" class="tbar-name">Granite: ISP Replacement</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53g" target="_blank" class="tbar-name">Confirm the Datadog BAA is on file and covers APM and Log Management</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53f" target="_blank" class="tbar-name">SPIKE: Salesforce &lt;-&gt; Q-global Patient Identity &amp; Record Linking</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53e" target="_blank" class="tbar-name">Production testing for Vineland 3</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z53b" target="_blank" class="tbar-name">LaunchPad Labs: RPA Conversions &amp; Automation</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+
+    <div class="tbar" style="border-left:4px solid #c7ccd1">
+      <a href="https://app.clickup.com/t/86bc0z538" target="_blank" class="tbar-name">Review SF packages for prod deployment</a>
+      <span class="tbar-meta"><span class="badge" style="background:#2f6fb0">TECH</span>  &middot; RAG: not tracked</span>
+    </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAPACITY PANEL -->
+  <div class="panel">
+    <div class="panel-header">
+      <div>
+        <h2>Capacity — Run / Grow / Transform</h2>
+        <div class="sub">Not yet tracked in ClickUp</div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="capacity-row">
+        <div class="cap-meter">
+          <div class="cap-label">Run</div>
+          <div class="cap-bar-track"><div class="cap-bar-fill"></div></div>
+          <span class="cap-flag">no data source</span>
+        </div>
+        <div class="cap-meter">
+          <div class="cap-label">Grow</div>
+          <div class="cap-bar-track"><div class="cap-bar-fill"></div></div>
+          <span class="cap-flag">no data source</span>
+        </div>
+        <div class="cap-meter">
+          <div class="cap-label">Transform</div>
+          <div class="cap-bar-track"><div class="cap-bar-fill"></div></div>
+          <span class="cap-flag">no data source</span>
+        </div>
+      </div>
+      <div class="capacity-note">There is currently no "Run / Grow / Transform" categorization field (or equivalent capacity-allocation field) anywhere in the Hopebridge Portfolio/Program ClickUp space's custom field schema. This panel is shown for layout parity with the requested mockup, but every value is a placeholder — none of it is real data. To populate this panel, a Run/Grow/Transform custom field (and a capacity/target-% field) would need to be added to the relevant ClickUp lists.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>Built from live ClickUp data &middot; Hopebridge Portfolio/Program space &middot; No values in this dashboard are estimated or fabricated — anything ClickUp does not track is explicitly flagged.</footer>
+
+</body>
+</html>
+
