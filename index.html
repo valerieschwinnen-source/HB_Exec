@@ -1,3 +1,6 @@
+
+
+Hopebridge pmo go live dashboard · HTML
 <!doctype html>
 <html lang="en">
 <head>
@@ -36,21 +39,21 @@
   header .meta { margin-top: 10px; font-size: 12px; color: #93a0ac; font-family: 'IBM Plex Mono', monospace; }
   header .retention { margin-top: 6px; font-size: 12px; color: #cddbe8; }
   .wrap { padding: 22px 32px 60px; max-width: 1440px; margin: 0 auto; }
-
+ 
   .kpi-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 22px; }
   .kpi { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
   .kpi .val { font-size: 28px; font-weight: 700; }
   .kpi .label { font-size: 12px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.4px; }
   .kpi .note { font-size: 11px; color: var(--muted); margin-top: 6px; }
-
+ 
   .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 22px; overflow: hidden; }
   .panel-header { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
   .panel-header h2 { margin: 0; font-size: 15px; font-weight: 600; }
   .panel-header .sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
   .panel-body { padding: 16px 18px; }
-
+ 
   .main-grid { display: grid; grid-template-columns: 2.1fr 1fr; gap: 18px; align-items: start; }
-
+ 
   .table-group { margin-bottom: 16px; }
   .table-group:last-child { margin-bottom: 0; }
   .table-group-header { font-size: 12px; font-weight: 700; letter-spacing: 0.6px; color: var(--muted); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
@@ -62,12 +65,12 @@
   table.ptable tr:hover td { background: #fafbfc; }
   .proj-cell a { color: var(--text); font-weight: 500; text-decoration: none; }
   .proj-cell a:hover { text-decoration: underline; color: var(--accent); }
-
+ 
   .flag { background: var(--flag-bg); color: var(--flag-text); font-size: 11px; padding: 2px 6px; border-radius: 4px; border: 1px solid #f0dcb8; white-space: nowrap; }
   .pill { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; white-space: nowrap; }
   .badge { font-size: 10px; font-weight: 700; color: #fff; padding: 2px 6px; border-radius: 4px; letter-spacing: 0.3px; margin-right: 4px; }
   .closing-note { font-size: 10.5px; color: #9a5b00; margin-top: 3px; }
-
+ 
   .sidebar-subhead { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; margin: 14px 0 8px; }
   .golive-item { padding: 10px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; }
   .golive-item.soon { border-color: #d99a2b66; background: #fffaf1; }
@@ -79,7 +82,7 @@
   .empty-note { color: var(--muted); font-size: 12px; padding: 8px 0; }
   .later-grid { display: flex; flex-direction: column; gap: 0; }
   .capacity-note { font-size: 12px; color: var(--muted); background: #f7f8fa; border-radius: 6px; padding: 10px 12px; border: 1px solid var(--border); }
-
+ 
   .kanban { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
   .kcol { background: #fafbfc; border: 1px solid var(--border); border-radius: 8px; padding: 10px; min-height: 40px; }
   .kcol-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 12px; }
@@ -90,7 +93,7 @@
   .kscore { font-size: 10.5px; }
   .kcard-name { display: block; font-size: 12.5px; font-weight: 500; color: var(--text); text-decoration: none; margin-bottom: 6px; }
   .kcard-name:hover { text-decoration: underline; color: var(--accent); }
-
+ 
   /* Gantt / Go-Live schedule */
   .gantt-wrap { position: relative; padding-top: 6px; }
   .gaxis { position: relative; height: 20px; margin-bottom: 8px; border-bottom: 1px solid var(--border); }
@@ -112,24 +115,24 @@
   .gtag.overdue { color: #d94f4f; transform: translateX(-115%); }
   .gtag.live { color: #2f9e6f; transform: translateX(14px); }
   .gtag.future { color: var(--muted); transform: translateX(14px); }
-
+ 
   .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 11.5px; color: var(--muted); }
   .legend span.swatch { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
-
+ 
   footer { text-align: center; font-size: 11px; color: #9aa3ad; padding: 20px; }
 </style>
 </head>
 <body>
-
+ 
 <header>
   <h1>Hopebridge PMO Portfolio — Go-Live Dashboard</h1>
   <div class="sub">Hopebridge PMO Portfolio &middot; Sourced live from ClickUp</div>
   <div class="meta">Generated September 21, 2026 at 10:28 AM ET &middot; 29 tracked items across 2 ClickUp lists (Business Ops Projects, Technology Projects) &middot; Auto-refreshes 6:50 AM, 11:50 AM &amp; 2:50 PM ET &middot; Fields with no ClickUp data source are labeled "no data" / "not tracked" rather than estimated.</div>
   <div class="retention">All 29 tasks in the two ClickUp lists are included regardless of ops/tech tagging. A task moved to ClickUp's "Done" status stays visible for 5 business days after its close date, then drops off automatically &mdash; none are currently past that window.</div>
 </header>
-
+ 
 <div class="wrap">
-
+ 
   <!-- KPI STRIP -->
   <div class="kpi-strip">
     <div class="kpi">
@@ -148,7 +151,7 @@
       <div class="note">Only 11 of 29 items have any go-live date on record</div>
     </div>
   </div>
-
+ 
   <!-- MAIN GRID: TABLE + GO-LIVES SIDEBAR -->
   <div class="main-grid">
     <div class="panel">
@@ -174,7 +177,7 @@
           <td>High</td>
           <td>Jan 11, 2027</td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc443hm" target="_blank">Session Notes Automation</a></td>
           <td>Jana Samo/Alissa Hayes</td>
@@ -183,7 +186,7 @@
           <td>Critical</td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc43ze7" target="_blank">POC Automation</a></td>
           <td>Jana Samo</td>
@@ -192,7 +195,7 @@
           <td>High</td>
           <td>Oct 23, 2026</td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc42deq" target="_blank">Intake Funnel Automation</a></td>
           <td>Matt Stimac</td>
@@ -201,7 +204,7 @@
           <td>High</td>
           <td>Oct 16, 2026</td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc42bfk" target="_blank">Automated Fax Ingestion</a></td>
           <td>Matt Stimac</td>
@@ -210,7 +213,7 @@
           <td>High</td>
           <td>Aug 19, 2026</td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc32hca" target="_blank">Brellium/Rethink: POC Auditing</a></td>
           <td>Melissa Chevalier</td>
@@ -219,7 +222,7 @@
           <td>Medium</td>
           <td>Jun 19, 2026</td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc2m9yy" target="_blank">Silna Tool Implementation - Insurance Monitoring Pilot</a></td>
           <td>Matt Stimac</td>
@@ -228,7 +231,7 @@
           <td>High</td>
           <td>Oct 01, 2026</td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc26qe2" target="_blank">LaunchPad Lab: Capacity Planning Tool</a></td>
           <td>Kyle Brinkworth</td>
@@ -237,7 +240,7 @@
           <td>High</td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc1zf9z" target="_blank">Tiger Project</a></td>
           <td>Doug Folsom</td>
@@ -246,7 +249,7 @@
           <td>Critical</td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc1yqy6" target="_blank">Brellium - Clinical Quality &amp; Compliance Auditing</a></td>
           <td>Melissa Chevalier</td>
@@ -255,7 +258,7 @@
           <td>High</td>
           <td>Aug 21, 2026</td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc1ymqz" target="_blank">BP/CRP - Billing Provider and Credentialed Rendering Provider</a></td>
           <td>Kelly Wescott</td>
@@ -264,7 +267,7 @@
           <td>Critical</td>
           <td>Sep 04, 2026</td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc1wqr9" target="_blank">TheraDriver - External Scheduling Platform</a></td>
           <td>Matt Stimac</td>
@@ -273,7 +276,7 @@
           <td>High</td>
           <td>Nov 20, 2026</td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc1urka" target="_blank">Verifiable: Delegated Credentialing</a></td>
           <td>Kelly Wescott</td>
@@ -282,7 +285,7 @@
           <td>High</td>
           <td>Jan 27, 2027</td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc1u3wt" target="_blank">Candid Health: CRM/Claims Platform</a></td>
           <td>Kelly Wescott</td>
@@ -303,7 +306,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjca" target="_blank">8x8 Contact Center</a></td>
           <td><span class="flag">no data</span></td>
@@ -312,7 +315,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjc9" target="_blank">TheraDriver Scheduling Platform</a></td>
           <td><span class="flag">no data</span></td>
@@ -321,7 +324,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjc8" target="_blank">Delegated Credentialing</a></td>
           <td><span class="flag">no data</span></td>
@@ -330,7 +333,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjc7" target="_blank">TotalABA Replacement Evaluation</a></td>
           <td><span class="flag">no data</span></td>
@@ -339,7 +342,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjc3" target="_blank">RCM Platform (Candid Health)</a></td>
           <td><span class="flag">no data</span></td>
@@ -348,7 +351,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjc4" target="_blank">Progress Dashboards</a></td>
           <td><span class="flag">no data</span></td>
@@ -357,7 +360,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjc2" target="_blank">Onboarding Automation</a></td>
           <td><span class="flag">no data</span></td>
@@ -366,7 +369,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjc1" target="_blank">Salesforce Data Cleanup</a></td>
           <td><span class="flag">no data</span></td>
@@ -375,7 +378,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjc0" target="_blank">Session Notes (AI-assisted)</a></td>
           <td><span class="flag">no data</span></td>
@@ -384,7 +387,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjbz" target="_blank">POC Automation (AI-assisted)</a></td>
           <td><span class="flag">no data</span></td>
@@ -393,7 +396,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjby" target="_blank">Capacity Planning Tool</a></td>
           <td><span class="flag">no data</span></td>
@@ -402,7 +405,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjbx" target="_blank">Authorization Automation</a></td>
           <td><span class="flag">no data</span></td>
@@ -411,7 +414,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjbw" target="_blank">Intake Funnel Automation</a></td>
           <td><span class="flag">no data</span></td>
@@ -420,7 +423,7 @@
           <td><span class="flag">no data</span></td>
           <td><span class="flag">no data</span></td>
         </tr>
-
+ 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc3cjbv" target="_blank">Automated Fax Ingestion</a></td>
           <td><span class="flag">no data</span></td>
@@ -430,10 +433,10 @@
           <td><span class="flag">no data</span></td>
         </tr></tbody></table>
 </div>
-
+ 
       </div>
     </div>
-
+ 
     <div class="panel">
       <div class="panel-header">
         <div>
@@ -448,31 +451,31 @@
       <div class="golive-name"><a href="https://app.clickup.com/t/86bc2m9yy" target="_blank">Silna Tool Implementation - Insurance Monitoring Pilot</a></div>
       <div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
     </div>
-
+ 
     <div class="golive-item soon">
       <div class="golive-date">Oct 16, 2026</div>
       <div class="golive-name"><a href="https://app.clickup.com/t/86bc42deq" target="_blank">Intake Funnel Automation</a></div>
       <div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
     </div>
-
+ 
     <div class="golive-item soon">
       <div class="golive-date">Oct 23, 2026</div>
       <div class="golive-name"><a href="https://app.clickup.com/t/86bc43ze7" target="_blank">POC Automation</a></div>
       <div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
     </div>
-
+ 
     <div class="golive-item soon">
       <div class="golive-date">Nov 20, 2026</div>
       <div class="golive-name"><a href="https://app.clickup.com/t/86bc1wqr9" target="_blank">TheraDriver - External Scheduling Platform</a></div>
       <div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#8b3fbf22;color:#8b3fbf;border:1px solid #8b3fbf55">Blocked</span></div>
     </div>
-
+ 
     <div class="golive-item ">
       <div class="golive-date">Jan 11, 2027</div>
       <div class="golive-name"><a href="https://app.clickup.com/t/86bc449v8" target="_blank">Website/Portal Updates</a></div>
       <div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
     </div>
-
+ 
     <div class="golive-item ">
       <div class="golive-date">Jan 27, 2027</div>
       <div class="golive-name"><a href="https://app.clickup.com/t/86bc1urka" target="_blank">Verifiable: Delegated Credentialing</a></div>
@@ -482,7 +485,7 @@
       </div>
     </div>
   </div>
-
+ 
   <!-- BOARD VIEW -->
   <div class="panel">
     <div class="panel-header">
@@ -503,105 +506,105 @@
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjca" target="_blank">8x8 Contact Center</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjc9" target="_blank">TheraDriver Scheduling Platform</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjc8" target="_blank">Delegated Credentialing</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjc7" target="_blank">TotalABA Replacement Evaluation</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjc3" target="_blank">RCM Platform (Candid Health)</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjc4" target="_blank">Progress Dashboards</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjc2" target="_blank">Onboarding Automation</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjc1" target="_blank">Salesforce Data Cleanup</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjc0" target="_blank">Session Notes (AI-assisted)</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjbz" target="_blank">POC Automation (AI-assisted)</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjby" target="_blank">Capacity Planning Tool</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjbx" target="_blank">Authorization Automation</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjbw" target="_blank">Intake Funnel Automation</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#2f6fb0">TECH</span><span class="kscore"><span class="flag">no data</span></span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc3cjbv" target="_blank">Automated Fax Ingestion</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">Critical</span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc1zf9z" target="_blank">Tiger Project</a>
@@ -609,7 +612,7 @@
         
       </div></div>
     </div>
-
+ 
     <div class="kcol">
       <div class="kcol-header"><span class="pill" style="background:#1090e022;color:#1090e0;border:1px solid #1090e055">In Progress</span> <span class="count">10</span></div>
       <div class="kcol-body">
@@ -619,63 +622,63 @@
         <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">Critical</span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc443hm" target="_blank">Session Notes Automation</a>
         <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">High</span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc43ze7" target="_blank">POC Automation</a>
         <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">High</span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc42deq" target="_blank">Intake Funnel Automation</a>
         <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">Medium</span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc32hca" target="_blank">Brellium/Rethink: POC Auditing</a>
         <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">High</span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc2m9yy" target="_blank">Silna Tool Implementation - Insurance Monitoring Pilot</a>
         <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">High</span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc26qe2" target="_blank">LaunchPad Lab: Capacity Planning Tool</a>
         <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">High</span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc1yqy6" target="_blank">Brellium - Clinical Quality &amp; Compliance Auditing</a>
         <div class="kcard-bottom"><span class="pill" style="background:#d94f4f22;color:#d94f4f;border:1px solid #d94f4f55">Red</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">High</span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc1urka" target="_blank">Verifiable: Delegated Credentialing</a>
         <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
         
       </div>
-
+ 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">High</span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc1u3wt" target="_blank">Candid Health: CRM/Claims Platform</a>
@@ -683,7 +686,7 @@
         
       </div></div>
     </div>
-
+ 
     <div class="kcol">
       <div class="kcol-header"><span class="pill" style="background:#2f6fb022;color:#2f6fb0;border:1px solid #2f6fb055">User Acceptance  (Uat)</span> <span class="count">1</span></div>
       <div class="kcol-body">
@@ -694,7 +697,7 @@
         
       </div></div>
     </div>
-
+ 
     <div class="kcol">
       <div class="kcol-header"><span class="pill" style="background:#d99a2b22;color:#d99a2b;border:1px solid #d99a2b55">On Hold</span> <span class="count">1</span></div>
       <div class="kcol-body">
@@ -705,7 +708,7 @@
         
       </div></div>
     </div>
-
+ 
     <div class="kcol">
       <div class="kcol-header"><span class="pill" style="background:#3db88b22;color:#3db88b;border:1px solid #3db88b55">Deployed</span> <span class="count">1</span></div>
       <div class="kcol-body">
@@ -719,7 +722,7 @@
       </div>
     </div>
   </div>
-
+ 
   <!-- GO-LIVE GANTT -->
   <div class="panel">
     <div class="panel-header">
@@ -748,7 +751,7 @@
             <div class="gtag overdue" style="left:0.00%">Overdue since Jun</div>
           </div>
         </div>
-
+ 
         <div class="grow">
           <div class="grow-label"><a href="https://app.clickup.com/t/86bc42bfk" target="_blank">Automated Fax Ingestion</a> <span class="badge" style="background:#b0702f">OPS</span></div>
           <div class="grow-track">
@@ -756,7 +759,7 @@
             <div class="gtag overdue" style="left:0.00%">Overdue since Aug</div>
           </div>
         </div>
-
+ 
         <div class="grow">
           <div class="grow-label"><a href="https://app.clickup.com/t/86bc1yqy6" target="_blank">Brellium - Clinical Quality &amp; Compliance Auditing</a> <span class="badge" style="background:#b0702f">OPS</span></div>
           <div class="grow-track">
@@ -764,7 +767,7 @@
             <div class="gtag overdue" style="left:0.00%">Overdue since Aug</div>
           </div>
         </div>
-
+ 
         <div class="grow">
           <div class="grow-label"><a href="https://app.clickup.com/t/86bc1ymqz" target="_blank">BP/CRP - Billing Provider and Credentialed Rendering Provider</a> <span class="badge" style="background:#b0702f">OPS</span></div>
           <div class="grow-track">
@@ -772,7 +775,7 @@
             <div class="gtag overdue" style="left:9.52%">Overdue since Sep</div>
           </div>
         </div>
-
+ 
         <div class="grow">
           <div class="grow-label"><a href="https://app.clickup.com/t/86bc1u3wt" target="_blank">Candid Health: CRM/Claims Platform</a> <span class="badge" style="background:#b0702f">OPS</span></div>
           <div class="grow-track">
@@ -780,7 +783,7 @@
             <div class="gtag live" style="left:35.71%">Live Sep 15, 2026</div>
           </div>
         </div>
-
+ 
         <div class="grow">
           <div class="grow-label"><a href="https://app.clickup.com/t/86bc2m9yy" target="_blank">Silna Tool Implementation - Insurance Monitoring Pilot</a> <span class="badge" style="background:#b0702f">OPS</span></div>
           <div class="grow-track">
@@ -794,10 +797,10 @@
       <div class="capacity-note" style="margin-top:14px;">No go-live date on record for 18 of 29 tracked items: Session Notes Automation, POC Auditing (Brellium), 8x8 Contact Center, TheraDriver Scheduling Platform, Delegated Credentialing, TotalABA Replacement Evaluation, RCM Platform (Candid Health), Progress Dashboards, Onboarding Automation, Salesforce Data Cleanup, Session Notes (AI-assisted), POC Automation (AI-assisted), Capacity Planning Tool, Authorization Automation, Intake Funnel Automation, Automated Fax Ingestion, LaunchPad Lab: Capacity Planning Tool, Tiger Project.</div>
     </div>
   </div>
-
+ 
 </div>
-
+ 
 <footer>Built from live ClickUp data &middot; Hopebridge PMO Portfolio space &middot; No values in this dashboard are estimated or fabricated — anything ClickUp does not track is explicitly flagged. All tasks in both lists are included regardless of ops/tech tagging; only the 5-business-day closed-task rule removes items.</footer>
-
+ 
 </body>
 </html>
