@@ -1,3 +1,4 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!doctype html>
 <html lang="en">
 <head>
@@ -80,7 +81,7 @@
   .later-grid { display: flex; flex-direction: column; gap: 0; }
   .capacity-note { font-size: 12px; color: var(--muted); background: #f7f8fa; border-radius: 6px; padding: 10px 12px; border: 1px solid var(--border); }
 
-  .kanban { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .kanban { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .kcol { background: #fafbfc; border: 1px solid var(--border); border-radius: 8px; padding: 10px; min-height: 40px; }
   .kcol-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 12px; }
   .kcol-header .count { color: var(--muted); font-weight: 600; }
@@ -123,27 +124,27 @@
 <header>
   <h1>Hopebridge PMO Portfolio — Go-Live Dashboard</h1>
   <div class="sub">Hopebridge PMO Portfolio &middot; Sourced live from ClickUp</div>
-  <div class="meta">Generated October 01, 2026 at 2:06 PM ET &middot; 26 "Project"-type tasks across 2 ClickUp lists (Business Ops Projects, Technology Projects) &middot; Auto-refreshes once daily at 2:50 PM ET &middot; Fields with no ClickUp data source are labeled "no data" / "not tracked" rather than estimated.</div>
-  <div class="retention">Scope: ClickUp task type "Project" only (milestones, epics and untyped tasks are excluded) across both lists, regardless of ops/tech tagging. Tasks with status backlog, complete, closed, or done are excluded outright. 26 of 97 fetched tasks currently meet this scope.</div>
+  <div class="meta">Generated October 02, 2026 at 4:01 PM ET &middot; 29 "Project"-type tasks across 2 ClickUp lists (Business Ops Projects, Technology Projects) &middot; Auto-refreshes once daily at 2:50 PM ET &middot; Fields with no ClickUp data source are labeled "no data" / "not tracked" rather than estimated.</div>
+  <div class="retention">Scope: ClickUp task type "Project" only (milestones, epics and untyped tasks are excluded) across both lists, regardless of ops/tech tagging. Tasks with status backlog, complete, closed, or done are excluded outright. 29 of 111 fetched tasks currently meet this scope.</div>
 </header>
 
 <div class="wrap">
 
   <div class="kpi-strip">
     <div class="kpi">
-      <div class="val">26</div>
+      <div class="val">29</div>
       <div class="label">Active Projects</div>
       <div class="note">ClickUp task type "Project", excluding backlog/complete/closed/done</div>
     </div>
     <div class="kpi">
       <div class="val" style="color:#d94f4f">4</div>
       <div class="label">At Risk (RAG Red / Blocked)</div>
-      <div class="note">RAG Status is only populated on 26 of 26 items — the rest have no RAG data source</div>
+      <div class="note">RAG Status is only populated on 29 of 29 items — the rest have no RAG data source</div>
     </div>
     <div class="kpi">
       <div class="val">6</div>
       <div class="label">Go-Lives — Next 60 Days</div>
-      <div class="note">Only 15 of 26 items have any go-live date on record</div>
+      <div class="note">Only 16 of 29 items have any go-live date on record</div>
     </div>
   </div>
 
@@ -161,10 +162,28 @@
         </table>
         
 <div class="table-group">
-  <div class="table-group-header"><span class="dot" style="background:#b0702f"></span>OPERATIONAL <span class="count">(20)</span></div>
+  <div class="table-group-header"><span class="dot" style="background:#b0702f"></span>OPERATIONAL <span class="count">(23)</span></div>
   <table class="ptable"><tbody>
         <tr>
-          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc9ht2x" target="_blank">Automate Q-Global Assessment Process</a></td>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bcbyb86" target="_blank">Side Panel Utility</a></td>
+          <td>Rich Jackson</td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">In Dev/Implementation</span></td>
+          <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
+          <td><span class="flag">no data</span></td>
+          <td><span class="flag">no data</span></td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bcbxt4n" target="_blank">Automate Fax Ingestion</a></td>
+          <td>Matt Stimac</td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">In Dev/Implementation</span></td>
+          <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
+          <td>High</td>
+          <td>Mar 31, 2027</td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc9ht2x" target="_blank">Implement Q-Global/Pearson API</a></td>
           <td>Jana Sarno</td>
           <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Testing</span></td>
           <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
@@ -179,6 +198,15 @@
           <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
           <td>Medium</td>
           <td>Oct 20, 2026</td>
+        </tr>
+
+        <tr>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc8twkh" target="_blank">Paylocity NextGen API Integration</a></td>
+          <td>Sarah Crismore</td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">In Dev/Implementation</span></td>
+          <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
+          <td>High</td>
+          <td><span class="flag">no data</span></td>
         </tr>
 
         <tr>
@@ -210,9 +238,9 @@
 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc4aqbt" target="_blank">Electronic Signature Platform (Dropbox/Sign)</a></td>
-          <td>Doug Folsom/Melissa/Jana Sarno /</td>
+          <td>Melissa Chevalier</td>
           <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Contracting</span></td>
-          <td><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></td>
+          <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
           <td>High</td>
           <td><span class="flag">no data</span></td>
         </tr>
@@ -227,7 +255,7 @@
         </tr>
 
         <tr>
-          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc46va4" target="_blank">Assured Credentialing Managed Service Implementation</a></td>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc46va4" target="_blank">Selection of Credentialing Platform</a></td>
           <td>Kelly Wescott</td>
           <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Contracting</span></td>
           <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
@@ -238,10 +266,10 @@
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc449v8" target="_blank">Website/Portal Updates</a></td>
           <td>Amanda Akers</td>
-          <td><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">In Dev/Implementation</span></td>
           <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
           <td>High</td>
-          <td>Jan 11, 2027</td>
+          <td>Feb 01, 2027</td>
         </tr>
 
         <tr>
@@ -282,7 +310,7 @@
 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc2m9yy" target="_blank">Silna - Insurance Monitoring Pilot</a></td>
-          <td>Kelly Wescott</td>
+          <td>Matt Stimac</td>
           <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Contracting</span></td>
           <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
           <td>High</td>
@@ -299,7 +327,7 @@
         </tr>
 
         <tr>
-          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc1zf9z" target="_blank">EMR Platform Evaluation</a></td>
+          <td class="proj-cell"><a href="https://app.clickup.com/t/86bc1zf9z" target="_blank">EMR Platform Replacement Assessment</a></td>
           <td>Doug Folsom</td>
           <td><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span></td>
           <td><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></td>
@@ -309,7 +337,7 @@
 
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc1ymqz" target="_blank">BP/CRP - Billing Provider and Credentialed Rendering Provider</a></td>
-          <td>Kelly Wescott/Kyle Brinkworth</td>
+          <td>Kelly Wescott</td>
           <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Ocm/Training</span></td>
           <td><span class="pill" style="background:#d94f4f22;color:#d94f4f;border:1px solid #d94f4f55">Red</span></td>
           <td>High</td>
@@ -328,7 +356,7 @@
         <tr>
           <td class="proj-cell"><a href="https://app.clickup.com/t/86bc1urka" target="_blank">Verifiable: Delegated Credentialing</a></td>
           <td>Kelly Wescott</td>
-          <td><span class="pill" style="background:#3db88b22;color:#3db88b;border:1px solid #3db88b55">Deployed</span></td>
+          <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">In Dev/Implementation</span></td>
           <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
           <td>Medium</td>
           <td>Jan 20, 2027</td>
@@ -378,7 +406,7 @@
           <td>Rich Jackson</td>
           <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Hypercare</span></td>
           <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
-          <td>Medium</td>
+          <td>High</td>
           <td><span class="flag">no data</span></td>
         </tr>
 
@@ -387,7 +415,7 @@
           <td>Doug Folsom</td>
           <td><span class="pill" style="background:#87909e22;color:#87909e;border:1px solid #87909e55">Hypercare</span></td>
           <td><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></td>
-          <td>Medium</td>
+          <td>High</td>
           <td>Sep 21, 2026</td>
         </tr>
 
@@ -457,7 +485,7 @@
 
     <div class="golive-item ">
       <div class="golive-date">Dec 11, 2026</div>
-      <div class="golive-name"><a href="https://app.clickup.com/t/86bc1zf9z" target="_blank">EMR Platform Evaluation</a></div>
+      <div class="golive-name"><a href="https://app.clickup.com/t/86bc1zf9z" target="_blank">EMR Platform Replacement Assessment</a></div>
       <div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
     </div>
 
@@ -474,12 +502,6 @@
     </div>
 
     <div class="golive-item ">
-      <div class="golive-date">Jan 11, 2027</div>
-      <div class="golive-name"><a href="https://app.clickup.com/t/86bc449v8" target="_blank">Website/Portal Updates</a></div>
-      <div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
-    </div>
-
-    <div class="golive-item ">
       <div class="golive-date">Jan 20, 2027</div>
       <div class="golive-name"><a href="https://app.clickup.com/t/86bc1urka" target="_blank">Verifiable: Delegated Credentialing</a></div>
       <div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
@@ -488,6 +510,18 @@
     <div class="golive-item ">
       <div class="golive-date">Jan 29, 2027</div>
       <div class="golive-name"><a href="https://app.clickup.com/t/86bc26qe2" target="_blank">Capacity Planning Report</a></div>
+      <div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
+    </div>
+
+    <div class="golive-item ">
+      <div class="golive-date">Feb 01, 2027</div>
+      <div class="golive-name"><a href="https://app.clickup.com/t/86bc449v8" target="_blank">Website/Portal Updates</a></div>
+      <div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
+    </div>
+
+    <div class="golive-item ">
+      <div class="golive-date">Mar 31, 2027</div>
+      <div class="golive-name"><a href="https://app.clickup.com/t/86bcbxt4n" target="_blank">Automate Fax Ingestion</a></div>
       <div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
     </div>
         <div class="sidebar-subhead">Overdue / recently passed</div><div class="golive-item past"><div class="golive-date">Sep 21, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc49puf" target="_blank">FreshService: ITSM Implementation</a></div><div class="golive-meta"><span class="badge" style="background:#2f6fb0">TECH</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item past"><div class="golive-date">Sep 29, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc1ymqz" target="_blank">BP/CRP - Billing Provider and Credentialed Rendering Provider</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#d94f4f22;color:#d94f4f;border:1px solid #d94f4f55">Red</span></div></div>
@@ -499,7 +533,7 @@
     <div class="panel-header">
       <div>
         <h2>Scheduled — Go-Live Timeline</h2>
-        <div class="sub">Business Ops only &middot; 14 of 20 Business Ops tasks in scope have a go-live date &middot; window: Sep 10 – Oct 22, 2026</div>
+        <div class="sub">Business Ops only &middot; 15 of 23 Business Ops tasks in scope have a go-live date &middot; window: Sep 11 – Oct 23, 2026</div>
       </div>
     </div>
     <div class="panel-body">
@@ -509,38 +543,46 @@
         <span><span class="swatch" style="background:#b0702f"></span>Upcoming — OPS</span>
       </div>
       <div class="gantt-wrap">
-        <div class="gaxis"><span class="gaxis-tick" style="left:0.00%">Sep 10</span><span class="gaxis-tick" style="left:16.67%">Sep 17</span><span class="gaxis-tick" style="left:33.33%">Sep 24</span><span class="gaxis-tick" style="left:50.00%">Oct 01</span><span class="gaxis-tick" style="left:66.67%">Oct 08</span><span class="gaxis-tick" style="left:83.33%">Oct 15</span><span class="gaxis-tick" style="left:100.00%">Oct 22</span></div>
+        <div class="gaxis"><span class="gaxis-tick" style="left:0.00%">Sep 11</span><span class="gaxis-tick" style="left:16.67%">Sep 18</span><span class="gaxis-tick" style="left:33.33%">Sep 25</span><span class="gaxis-tick" style="left:50.00%">Oct 02</span><span class="gaxis-tick" style="left:66.67%">Oct 09</span><span class="gaxis-tick" style="left:83.33%">Oct 16</span><span class="gaxis-tick" style="left:100.00%">Oct 23</span></div>
         <div class="gplot">
           <div class="gtoday-line" style="left:50.00%"></div>
-          <div class="gtoday-label" style="left:50.00%">Oct 01</div>
+          <div class="gtoday-label" style="left:50.00%">Oct 02</div>
           
         <div class="grow">
           <div class="grow-label"><a href="https://app.clickup.com/t/86bc1ymqz" target="_blank">BP/CRP - Billing Provider and Credentialed Rendering Provider</a> <span class="badge" style="background:#b0702f">OPS</span></div>
           <div class="grow-track">
-            <div class="gdot live" style="left:45.24%"></div>
-            <div class="gtag live" style="left:45.24%">Live Sep 29, 2026</div>
+            <div class="gdot live" style="left:42.86%"></div>
+            <div class="gtag live" style="left:42.86%">Live Sep 29, 2026</div>
           </div>
         </div>
 
         <div class="grow">
           <div class="grow-label"><a href="https://app.clickup.com/t/86bc32hca" target="_blank">Brellium: POC Auditing</a> <span class="badge" style="background:#b0702f">OPS</span></div>
           <div class="grow-track">
-            <div class="gbar" style="left:50.00%;width:19.05%;background:#b0702f"></div>
-            <div class="gtag future" style="left:69.05%">Oct 09, 2026</div>
+            <div class="gbar" style="left:50.00%;width:16.67%;background:#b0702f"></div>
+            <div class="gtag future" style="left:66.67%">Oct 09, 2026</div>
           </div>
         </div>
 
         <div class="grow">
           <div class="grow-label"><a href="https://app.clickup.com/t/86bc9h49u" target="_blank">IDP/ISSO Remediation (FlexSpring)</a> <span class="badge" style="background:#b0702f">OPS</span></div>
           <div class="grow-track">
-            <div class="gbar" style="left:50.00%;width:45.24%;background:#b0702f"></div>
-            <div class="gtag future" style="left:95.24%">Oct 20, 2026</div>
+            <div class="gbar" style="left:50.00%;width:42.86%;background:#b0702f"></div>
+            <div class="gtag future" style="left:92.86%">Oct 20, 2026</div>
+          </div>
+        </div>
+
+        <div class="grow">
+          <div class="grow-label"><a href="https://app.clickup.com/t/86bc43ze7" target="_blank">POC Automation for ABA (Phase 1)</a> <span class="badge" style="background:#b0702f">OPS</span></div>
+          <div class="grow-track">
+            <div class="gbar" style="left:50.00%;width:50.00%;background:#b0702f"></div>
+            <div class="gtag future" style="left:100.00%">Oct 23, 2026</div>
           </div>
         </div>
         </div>
       </div>
-      <div class="sidebar-subhead">Beyond 21-day view window</div><div class="later-grid"><div class="golive-item"><div class="golive-date">Oct 23, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc43ze7" target="_blank">POC Automation for ABA (Phase 1)</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Oct 30, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc49v7b" target="_blank">Session Notes Amendments</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Oct 30, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc1u3wt" target="_blank">Candid Health: CRM/Claims Platform</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#d99a2b22;color:#d99a2b;border:1px solid #d99a2b55">Amber</span></div></div><div class="golive-item"><div class="golive-date">Nov 20, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc1wqr9" target="_blank">TheraDriver - External Scheduling Platform</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#d94f4f22;color:#d94f4f;border:1px solid #d94f4f55">Red</span></div></div><div class="golive-item"><div class="golive-date">Dec 11, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc64yhv" target="_blank">JP Morgan - InstaMed (Patient Acct Statement)</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Dec 11, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc1zf9z" target="_blank">EMR Platform Evaluation</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div></div><div class="golive-item"><div class="golive-date">Dec 18, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc2m9yy" target="_blank">Silna - Insurance Monitoring Pilot</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Dec 31, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc42deq" target="_blank">Intake Funnel Automation</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Jan 11, 2027</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc449v8" target="_blank">Website/Portal Updates</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Jan 20, 2027</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc1urka" target="_blank">Verifiable: Delegated Credentialing</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Jan 29, 2027</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc26qe2" target="_blank">Capacity Planning Report</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div></div>
-      <div class="capacity-note" style="margin-top:14px;">No go-live date on record for 6 of 20 Business Ops tracked items: Automate Q-Global Assessment Process, CRM Evaluation of LeadSquared Solution, POC Automation for Psych (Phase 2), Electronic Signature Platform (Dropbox/Sign), Assured Credentialing Managed Service Implementation, Brellium/ReThink API Implementation.</div>
+      <div class="sidebar-subhead">Beyond 21-day view window</div><div class="later-grid"><div class="golive-item"><div class="golive-date">Oct 30, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc49v7b" target="_blank">Session Notes Amendments</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Oct 30, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc1u3wt" target="_blank">Candid Health: CRM/Claims Platform</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#d99a2b22;color:#d99a2b;border:1px solid #d99a2b55">Amber</span></div></div><div class="golive-item"><div class="golive-date">Nov 20, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc1wqr9" target="_blank">TheraDriver - External Scheduling Platform</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#d94f4f22;color:#d94f4f;border:1px solid #d94f4f55">Red</span></div></div><div class="golive-item"><div class="golive-date">Dec 11, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc64yhv" target="_blank">JP Morgan - InstaMed (Patient Acct Statement)</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Dec 11, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc1zf9z" target="_blank">EMR Platform Replacement Assessment</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div></div><div class="golive-item"><div class="golive-date">Dec 18, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc2m9yy" target="_blank">Silna - Insurance Monitoring Pilot</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Dec 31, 2026</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc42deq" target="_blank">Intake Funnel Automation</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Jan 20, 2027</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc1urka" target="_blank">Verifiable: Delegated Credentialing</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Jan 29, 2027</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc26qe2" target="_blank">Capacity Planning Report</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Feb 01, 2027</div><div class="golive-name"><a href="https://app.clickup.com/t/86bc449v8" target="_blank">Website/Portal Updates</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div><div class="golive-item"><div class="golive-date">Mar 31, 2027</div><div class="golive-name"><a href="https://app.clickup.com/t/86bcbxt4n" target="_blank">Automate Fax Ingestion</a></div><div class="golive-meta"><span class="badge" style="background:#b0702f">OPS</span> <span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div></div></div>
+      <div class="capacity-note" style="margin-top:14px;">No go-live date on record for 8 of 23 Business Ops tracked items: Side Panel Utility, Implement Q-Global/Pearson API, Paylocity NextGen API Integration, CRM Evaluation of LeadSquared Solution, POC Automation for Psych (Phase 2), Electronic Signature Platform (Dropbox/Sign), Selection of Credentialing Platform, Brellium/ReThink API Implementation.</div>
     </div>
   </div>
 
@@ -555,7 +597,7 @@
       <div class="kanban">
         
     <div class="kcol">
-      <div class="kcol-header"><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span> <span class="count">5</span></div>
+      <div class="kcol-header"><span class="pill" style="background:#5f55ee22;color:#5f55ee;border:1px solid #5f55ee55">Planning</span> <span class="count">4</span></div>
       <div class="kcol-body">
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">Medium</span></div>
@@ -573,13 +615,6 @@
 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">High</span></div>
-        <a class="kcard-name" href="https://app.clickup.com/t/86bc449v8" target="_blank">Website/Portal Updates</a>
-        <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
-        
-      </div>
-
-      <div class="kcard">
-        <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">High</span></div>
         <a class="kcard-name" href="https://app.clickup.com/t/86bc443hm" target="_blank">Brellium/ReThink API Implementation</a>
         <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
         
@@ -587,7 +622,7 @@
 
       <div class="kcard">
         <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">High</span></div>
-        <a class="kcard-name" href="https://app.clickup.com/t/86bc1zf9z" target="_blank">EMR Platform Evaluation</a>
+        <a class="kcard-name" href="https://app.clickup.com/t/86bc1zf9z" target="_blank">EMR Platform Replacement Assessment</a>
         <div class="kcard-bottom"><span class="pill" style="background:#9aa3ad22;color:#9aa3ad;border:1px solid #9aa3ad55">Not Started</span></div>
         
       </div></div>
@@ -628,17 +663,6 @@
         
       </div></div>
     </div>
-
-    <div class="kcol">
-      <div class="kcol-header"><span class="pill" style="background:#3db88b22;color:#3db88b;border:1px solid #3db88b55">Deployed</span> <span class="count">1</span></div>
-      <div class="kcol-body">
-      <div class="kcard">
-        <div class="kcard-top"><span class="badge" style="background:#b0702f">OPS</span><span class="kscore">Medium</span></div>
-        <a class="kcard-name" href="https://app.clickup.com/t/86bc1urka" target="_blank">Verifiable: Delegated Credentialing</a>
-        <div class="kcard-bottom"><span class="pill" style="background:#2f9e6f22;color:#2f9e6f;border:1px solid #2f9e6f55">Green</span></div>
-        
-      </div></div>
-    </div>
       </div>
     </div>
   </div>
@@ -649,3 +673,5 @@
 
 </body>
 </html>
+
+</body></html>
